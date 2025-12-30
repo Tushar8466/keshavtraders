@@ -810,3 +810,220 @@ body.light-mode .navbar {
         right: -100%;
     }
 }
+
+/* Search Overlay */
+.search-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    /* Fallback */
+    z-index: 1100;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 15vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+}
+
+/* Ensure background handles transparency if needed */
+.light-mode .search-container {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+body:not(.light-mode) .search-container {
+    background: rgba(18, 18, 18, 0.98);
+}
+
+.search-active .search-container {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    transform: translateY(-20px);
+    transition: var(--transition);
+}
+
+.search-active .search-wrapper {
+    transform: translateY(0);
+}
+
+.search-input {
+    width: 100%;
+    padding: 20px 50px 20px 10px;
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    outline: none;
+    font-weight: 300;
+}
+
+.search-input:focus {
+    border-bottom-color: var(--primary);
+}
+
+.close-search {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-search:hover {
+    color: var(--primary);
+    transform: translateY(-50%) rotate(90deg);
+}
+
+/* Infinite Scroll Hero Marquee */
+.hero-marquee-container {
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    /* Wider to show part of next/prev items */
+    margin: 0 auto;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: marqueeScroll 25s linear infinite;
+}
+
+/* Pause on hover for better UX */
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.marquee-item img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+    transition: transform 0.4s ease;
+    /* Slight rotation for dynamic 3D feel */
+    transform: rotateY(15deg) scale(0.9);
+}
+
+.marquee-item:hover img {
+    transform: rotateY(0deg) scale(1.05);
+    filter: drop-shadow(0 30px 50px rgba(255, 105, 0, 0.4));
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Hero Slider */
+.hero-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    z-index: 1;
+    display: flex;
+    /* Ensure container centers content */
+    align-items: center;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+/* Animations for slide content */
+.hero-slide .hero-text,
+.hero-slide .hero-image {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease 0.3s;
+}
+
+.hero-slide.active .hero-text,
+.hero-slide.active .hero-image {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active,
+.dot:hover {
+    background-color: var(--primary);
+    transform: scale(1.2);
+}
+
+/* Hide Marquee Styles if not used or override them */
+.hero-marquee-container {
+    display: none;
+}
+
+/* Adjust layout for hero to give more space to marquee if needed */
+@media (min-width: 900px) {
+    .hero-content {
+        grid-template-columns: 0.8fr 1.2fr;
+        /* Give more space to image side */
+    }
+}

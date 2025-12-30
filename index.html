@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assests/images/logo.png" type="image/x-icon">
 </head>
 
 <body>
@@ -45,28 +46,90 @@
     </nav>
 
     <!-- Hero Section -->
+    <!-- Hero Section -->
     <header class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <span class="tag">New Arrival</span>
-                <h1>Xiaomi 14 Ultra</h1>
-                <p>Leica Professional Optical Lens. Snapshot aesthetics. Experience photography like never before.</p>
-                <div class="hero-btns">
-                    <a href="#mobiles" class="btn btn-primary">Buy Now</a>
-                    <a href="#mobiles" class="btn btn-secondary">Learn More</a>
+        <div class="hero-slider">
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <div class="container hero-content">
+                    <div class="hero-text">
+                        <span class="tag">New Arrival</span>
+                        <h1>Xiaomi 14 <span class="highlight">Ultra</span></h1>
+                        <p>Leica Professional Optical Lens. Snapshot aesthetics. Experience photography like never
+                            before.</p>
+                        <div class="hero-btns">
+                            <a href="#mobiles" class="btn btn-primary">Buy Now</a>
+                            <a href="Info/info.html" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="floating-phone">
+                            <img src="https://i02.appmifile.com/91_operatorx_operatorx_opx/24/02/2024/4eafcd40186edde466860564f9ff71e9.png"
+                                alt="Xiaomi 14 Ultra">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <!-- Using a placeholder that represents a premium phone -->
-                <div class="floating-phone">
-                    <img src="https://i02.appmifile.com/91_operatorx_operatorx_opx/24/02/2024/4eafcd40186edde466860564f9ff71e9.png"
-                        alt="Xiaomi 14 Ultra"
-                        onerror="this.src='https://placehold.co/400x600/121212/FF6900?text=Xiaomi+14+Ultra'">
+
+            <!-- Slide 2 -->
+            <div class="hero-slide">
+                <div class="container hero-content">
+                    <div class="hero-text">
+                        <span class="tag">Best Seller</span>
+                        <h1>Redmi Note <span class="highlight">13 Pro+</span></h1>
+                        <p>Super-clear 200MP camera. 120W HyperCharge. The ultimate mid-range beast.</p>
+                        <div class="hero-btns">
+                            <a href="#mobiles" class="btn btn-primary">Buy Now</a>
+                            <a href="#mobiles" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="floating-phone">
+                            <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1678859005.10526017.png"
+                                alt="Redmi Note 13 Pro+">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide">
+                <div class="container hero-content">
+                    <div class="hero-text">
+                        <span class="tag">Cinematic Experience</span>
+                        <h1>Xiaomi <span class="highlight">Smart TV</span></h1>
+                        <p>4K Dolby Vision IQ. Immersive audio. Transform your living room.</p>
+                        <div class="hero-btns">
+                            <a href="#leds" class="btn btn-primary">View TVs</a>
+                            <a href="#leds" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="floating-phone">
+                            <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1686663550.04169733.png"
+                                alt="Xiaomi Smart TV">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+
         <div class="background-glow"></div>
     </header>
+
+    <!-- Search Overlay -->
+    <div class="search-container">
+        <div class="search-wrapper">
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button class="close-search"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
 
     <!-- Cart Sidebar -->
     <div class="cart-overlay"></div>

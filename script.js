@@ -258,3 +258,110 @@ function showToast(message) {
         }, 300);
     }, 3000);
 }
+
+// Search Logic
+const searchBtn = document.querySelector('.icon-btn[aria-label="Search"]');
+const searchContainer = document.querySelector('.search-container');
+const closeSearchBtn = document.querySelector('.close-search');
+const searchInput = document.querySelector('.search-input');
+const productCards = document.querySelectorAll('.card');
+
+if (searchBtn && searchContainer && closeSearchBtn && searchInput) {
+    // Open Search
+    searchBtn.addEventListener('click', () => {
+        document.body.classList.add('search-active');
+        // Small delay to focus after transition starts
+        setTimeout(() => searchInput.focus(), 100);
+    });
+
+    // Close Search
+    closeSearchBtn.addEventListener('click', () => {
+        closeSearch();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.body.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+    // Filter Logic
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+
+        productCards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            // Search in description as well
+            const desc = card.querySelector('.desc') ? card.querySelector('.desc').textContent.toLowerCase() : '';
+
+            if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeInUp 0.5s ease forwards';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+}
+
+function closeSearch() {
+    document.body.classList.remove('search-active');
+    setTimeout(() => {
+        searchInput.value = '';
+        // Reset all cards to visible
+        productCards.forEach(card => {
+            card.style.display = 'block';
+            card.style.animation = ''; // Clear animation override
+        });
+    }, 300); // Wait for transition
+}
+
+// Hero Slider Logic
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.dot');
+let currentSlide = 0;
+let slideInterval;
+
+function goToSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+
+    currentSlide = (n + slides.length) % slides.length;
+
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+    goToSlide(currentSlide + 1);
+}
+
+function startSlider() {
+    slideInterval = setInterval(nextSlide, 5000); // 5 seconds per slide
+}
+
+function stopSlider() {
+    clearInterval(slideInterval);
+}
+
+if (slides.length > 0) {
+    // Event Listeners
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopSlider();
+            goToSlide(index);
+            startSlider();
+        });
+    });
+
+    // Pause on hover over hero section (optional)
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', stopSlider);
+        heroSection.addEventListener('mouseleave', startSlider);
+    }
+
+    // Start
+    startSlider();
+}
